@@ -3,5 +3,93 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "fm-newsletter-signup": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/fm-newsletter-signup",
+      "sourceRoot": "projects/fm-newsletter-signup/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/fm-newsletter-signup",
+            "index": "projects/fm-newsletter-signup/src/index.html",
+            "browser": "projects/fm-newsletter-signup/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/fm-newsletter-signup/tsconfig.app.json",
+            "assets": [
+              "projects/fm-newsletter-signup/src/favicon.ico",
+              "projects/fm-newsletter-signup/src/assets"
+            ],
+            "styles": [
+              "projects/fm-newsletter-signup/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "fm-newsletter-signup:build:production"
+            },
+            "development": {
+              "buildTarget": "fm-newsletter-signup:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "fm-newsletter-signup:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/fm-newsletter-signup/tsconfig.spec.json",
+            "assets": [
+              "projects/fm-newsletter-signup/src/favicon.ico",
+              "projects/fm-newsletter-signup/src/assets"
+            ],
+            "styles": [
+              "projects/fm-newsletter-signup/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
   }
 }
